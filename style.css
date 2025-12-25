@@ -1,0 +1,126 @@
+/* 1. RESET GLOBAL: Quitamos los margenes feos por defecto */
+*{
+    box-sizing: border-box; /* El tamaño de los elementos incluye el padding y border */
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /*Fuente moderna*/
+    
+}
+
+/* 2. EL FONDO (BODY): Centramos el contenido y le damos un fondo agradable */
+body {
+    background-color: #f0f2f5; /* Gris muy suave  (tipo facebook)*/
+    display: flex;/*Activamos flexbox para centrar el contenido*/
+    justify-content: center; /*centrar horizontalmente*/
+    align-items: center; /*centrar verticalmente*/
+    min-height: 100vh; /*Altura minima de toda la pantalla*/
+}
+/* 3. LA TARJETA PRINCIPAL (Necesitarás envolver tu HTML en un div, ver Paso 3) */
+.container {
+    background: white;
+    padding: 2rem;             /* Espacio interno */
+    border-radius: 15px;       /* Bordes redondeados */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1); /* Sombra elegante */
+    width: 100%;
+    max-width: 400px;          /* Que no sea muy ancha en PC */
+    text-align: center;
+}
+
+/* 4. TÍTULOS */
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+h3 {
+    margin-top: 20px;
+    color: #2c3e50;
+    border-top: 2px solid #eee; /* Línea separadora arriba del total */
+    padding-top: 10px;
+}
+
+/* 5. INPUTS (Cajas de texto) */
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;        /* Bordes suaves */
+    font-size: 1rem;
+}
+
+/* 6. BOTONES (El toque profesional) */
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff; /* Azul profesional */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;           /* Manito al pasar el mouse */
+    margin-bottom: 5px;
+    transition: background 0.3s; /* Animación suave al pasar el mouse */
+}
+
+button:hover {
+    background-color: #0056b3; /* Azul más oscuro al tocar */
+}
+
+/* Botón de limpiar (un color diferente) */
+button[onclick="limpiar()"] {
+    background-color: #6c757d; /* Gris */
+}
+
+button[onclick="importarproductos()"] {
+    background-color: #28a745; /* Verde */
+}
+
+/* 7. LA LISTA DE COMPRAS */
+ul {
+    list-style: none;          /* Quitamos los puntos negros feos */
+    margin-top: 20px;
+    text-align: left;          /* Texto alineado a la izquierda */
+}
+
+li {
+    background: #f8f9fa;
+    margin-bottom: 8px;
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;             /* MAGIA: Pone el texto y la X en la misma línea */
+    justify-content: space-between; /* Texto a la izq, botón a la derecha */
+    align-items: center;
+    border-left: 4px solid #007bff; /* Decoración azul a la izquierda */
+}
+
+/* El botoncito rojo de eliminar dentro de la lista */
+li button {
+    background: #dc3545;       /* Rojo */
+    width: auto;               /* Que solo ocupe lo necesario */
+    padding: 5px 10px;
+    margin-left: 10px;
+    margin-bottom: 0;
+}
+/* Esto se activa solo en pantallas de menos de 480px (Celulares) */
+@media (max-width: 480px) {
+    body {
+        padding: 10px; /* Un poco de respiro en los bordes */
+        align-items: flex-start; /* Que empiece desde arriba si hay muchos productos */
+        padding-top: 30px;
+    }
+
+    .container {
+        padding: 1.2rem; /* Reducimos el padding para que quepa más contenido */
+        width: 100%;     /* Que use todo el ancho disponible */
+    }
+
+    h1 {
+        font-size: 1.2rem; /* Título un poco más pequeño para que no ocupe 3 líneas */
+    }
+    
+    li {
+        font-size: 0.9rem; /* Texto de productos un poco más ajustado */
+    }
+}

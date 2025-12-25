@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi Tienda JS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class=""container">
+
+    <h1 id="titulo">Tienda "EL SIN MIEDO"🛒</h1>
+    
+    <input type="text" id="cajaproducto" placeholder="escribe el producto aqui">
+    <input type="number" id="cajaprecio" placeholder="precio total">
+    <button onclick="agregaralcarrito()">➕agregar al carrito</button>
+    <button onclick="importarproductos()"☁️>Traer productos de la nube</button>
+    <button onclick="limpiar()">🗑️Limpiar Todo</button>
+    <h2 id="titulolista">Lista de productos en el carrito:</h2>
+    <ul id="listacompras"></ul>
+
+    <h3 id="textototal">Total a pagar: $0</h3>
+    </div><script src="app.js"></script>
+    
+</body>
+</html>
