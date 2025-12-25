@@ -6,11 +6,12 @@ let productosguardados = JSON.parse(localStorage.getItem("carrito")) || [];
 const titulo = document.getElementById("titulo");
 const inputproducto = document.getElementById("cajaproducto");
 const inputprecio = document.getElementById("cajaprecio");
+const inputimagen = document.getElementById("cajaimagen");
 const lista = document.getElementById("listacompras");
 const sumatotal = document.getElementById("textototal");
 
 // 2. VARIABLE ACUMULADORA
-//¡IMPORTANTE! est|a variable debe estar fuera de la funcion para que no se reinicie cada vez que se llame
+//¡IMPORTANTE! esta variable debe estar fuera de la funcion para que no se reinicie cada vez que se llame
 let total = 0;
 //FUNCIONES
 
@@ -31,7 +32,9 @@ function agregaralcarrito() {
         //creamos un objeto con la info del producto
         let nuevoproducto = {
             nombre: producto,
-            precio: precionumero
+            precio: precionumero,
+            imagen: inputimagen.value //agregamos la URL de la imagen (puede estar vacia)
+        
         };
         // lo metemos en nuestro array de productos (guardar en memoria y Localstorage)
         productosguardados.push(nuevoproducto);
@@ -46,6 +49,7 @@ function agregaralcarrito() {
         //Limpiamos los inputs
         inputproducto.value = "";
         inputprecio.value = "";
+        inputimagen.value = "";
         titulo.innerText = `Agregaste: ${producto} al carrito.`;
         }
 }
@@ -111,7 +115,8 @@ async function importarproductos() {
             //reutilizamos la logica de arreglar al array de productos guardados (memoria)
             let nuevoproducto = { //1.crea los prodcutos
                 nombre: producto.title, //la API usa `title`en vez de `nombre`
-                precio: producto.price //la API usa `price` en vez de `precio`
+                precio: producto.price, //la API usa `price` en vez de `precio`
+                imagen: producto.image //Aqui CONECTAMOS LA FOTO DE LA API!  
             };//2. Guardar en memoria y localstorage
             //agregamos a nuestra memoria y guardamos
             productosguardados.push(nuevoproducto);
@@ -139,11 +144,22 @@ function crearElementoVisual(item) {
 
     //1. crear el <li>
     let nuevoelemento = document.createElement("li");
+    // 1.1 crea la imagen
+    let imagen =document.createElement("img");
+    //truco: si el producto tiene imagen, usala. si no, usa una por defecto
+    if (item.imagen) {
+        imagen.src = item.imagen;
+    } else {
+        imagen.src = "https://via.placholder.com/50?text=SF"; //imagen sin foto
+    }
+    //2.CREAR TEXTO Y BOTON (igual que antes)
+    let texto = document.createElement("span"); //envolvemos el texto en un span para ordenarlo mejor
+    texto.innerText = `${item.nombre} - $${item.precio}`;
 
-    //2. crear el boton eliminar
+    //2.1 crear el boton eliminar
     let botoneliminar = document.createElement("button");
     botoneliminar.innerText = "❌";
-    botoneliminar.style.marginLeft = "10px";
+    botoneliminar.style.marginLeft = "auto"; //truco flexbox: empuja el boton a la derecha
 
     //3. Logica del boton (cerrada aqui dentro)
     botoneliminar.onclick = function() {
@@ -159,7 +175,9 @@ function crearElementoVisual(item) {
         localStorage.setItem("carrito",JSON.stringify(productosguardados));  
     };
     //4. Armar y pegar
-    nuevoelemento.innerText = `${item.nombre} - $${item.precio} pesos argentinos`;
-    nuevoelemento.appendChild(botoneliminar);
+    //nuevoelemento.innerText = `${item.nombre} - $${item.precio} pesos argentinos`;
+    nuevoelemento.appendChild(imagen);//primero la foto
+    nuevoelemento.appendChild(texto);//luego el texto
+    nuevoelemento.appendChild(botoneliminar); // al final la x de eliminar
     lista.appendChild(nuevoelemento);
 }

@@ -124,3 +124,17 @@ li button {
         font-size: 0.9rem; /* Texto de productos un poco más ajustado */
     }
 }
+/* Estilo para la imagen del producto dentro de la lista */
+li img {
+    width: 50px;       /* Ancho fijo */
+    height: 50px;      /* Alto fijo */
+    object-fit: cover; /* Recorta la imagen para que no se deforme */
+    border-radius: 5px;/* Bordes redondeados */
+    margin-right: 15px;/* Separación del texto */
+    border: 1px solid #ddd;
+}
+
+/* Ajuste para que el texto y la imagen se alineen bien */
+li {
+    align-items: center; /* Centrar verticalmente */
+}
