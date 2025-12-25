@@ -74,7 +74,7 @@ button[onclick="limpiar()"] {
 }
 
 button[onclick="importarproductos()"] {
-    background-color: #28a745; /* Verde */
+    background-color: #a72890; /* morado */
 }
 
 /* 7. LA LISTA DE COMPRAS */
